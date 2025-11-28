@@ -33,7 +33,9 @@ export class RecursosListComponent implements OnInit {
   private readonly messageService = inject(MessageService);
 
   recursos = signal<Recurso[]>([]);
+  tempRecursos = signal<Recurso[]>([]);
   tipoSeleccionado: string | null = null;
+  filteredTipos = signal<{ label: string; value: string }[]>([]);
 
   readonly tipoOptions = [
     { label: 'Cancha', value: 'CANCHA' },
@@ -44,13 +46,23 @@ export class RecursosListComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.filteredTipos.set(this.tipoOptions);
     this.cargarRecursos();
+  }
+
+  filtrarTipos(event: { query: string }) {
+    const query = (event.query || '').toLowerCase();
+    const opciones = this.tipoOptions.filter((opt) =>
+      opt.label.toLowerCase().includes(query),
+    );
+    this.filteredTipos.set(opciones);
   }
 
   async cargarRecursos() {
     try {
       const data = await this.recursosService.getRecursos(this.tipoSeleccionado || undefined);
       this.recursos.set(data);
+      this.filterRecursos();
     } catch (err: any) {
       this.messageService.add({
         severity: 'error',
@@ -58,5 +70,16 @@ export class RecursosListComponent implements OnInit {
         detail: err?.error?.message || 'Ocurrió un error',
       });
     }
+  }
+
+  filterRecursos() {
+    const tipo = this.tipoSeleccionado;
+    const base = this.recursos();
+    this.tempRecursos.set(tipo ? base.filter((rec) => rec.tipo === tipo) : base);
+  }
+
+  onTipoChange(value: string | null) {
+    this.tipoSeleccionado = value;
+    this.filterRecursos();
   }
 }

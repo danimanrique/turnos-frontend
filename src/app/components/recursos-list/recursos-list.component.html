@@ -3,12 +3,13 @@
   <h2 class="m-0">Recursos</h2>
   <div class="flex align-items-center gap-2">
     <p-autoComplete
-      [suggestions]="tipoOptions"
+      [suggestions]="filteredTipos()"
+      (completeMethod)="filtrarTipos($event)"
       placeholder="Filtrar por tipo"
       [(ngModel)]="tipoSeleccionado"
+      (ngModelChange)="onTipoChange($event)"
       optionLabel="label"
       optionValue="value"
-      (onChange)="cargarRecursos()"
       [dropdown]="true"
       [showClear]="true"
     ></p-autoComplete>
@@ -19,15 +20,17 @@
 </div>
 
 <div class="grid">
-  <div class="col-12 md:col-4" *ngFor="let recurso of recursos()">
-    <p-card class="h-full flex flex-column" [header]="recurso.nombre" [subheader]="recurso.tipo">
-      <p class="mb-3">{{ recurso.descripcion || 'Sin descripción' }}</p>
-      <div class="flex align-items-center justify-content-between mt-auto">
-        <p-tag [severity]="recurso.activo ? 'success' : 'danger'">
-          {{ recurso.activo ? 'Activo' : 'Inactivo' }}
-        </p-tag>
-        <a pButton type="button" [routerLink]="['/recursos', recurso.id]">Ver</a>
-      </div>
-    </p-card>
-  </div>
+  @for (recurso of tempRecursos(); track recurso.id) {
+    <div class="col-12 md:col-4">
+      <p-card class="h-full flex flex-column" [header]="recurso.nombre" [subheader]="recurso.tipo">
+        <p class="mb-3">{{ recurso.descripcion || 'Sin descripción' }}</p>
+        <div class="flex align-items-center justify-content-between mt-auto">
+          <p-tag [severity]="recurso.activo ? 'success' : 'danger'">
+            {{ recurso.activo ? 'Activo' : 'Inactivo' }}
+          </p-tag>
+          <a pButton type="button" [routerLink]="['/recursos', recurso.id]">Ver</a>
+        </div>
+      </p-card>
+    </div>
+  }
 </div>

@@ -6,14 +6,15 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TextareaModule } from 'primeng/textarea';
-import { MessageService, ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { RecursosService } from '../../services/recursos.service';
 import { TurnosService } from '../../services/turnos.service';
 import { AuthService } from '../../auth/auth.service';
 import { Recurso, SlotDisponible } from '../../core/models';
 import { DatePickerModule } from 'primeng/datepicker';
+import { DialogModule } from 'primeng/dialog';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-recurso-detalle',
@@ -27,10 +28,10 @@ import { DatePickerModule } from 'primeng/datepicker';
     ButtonModule,
     TagModule,
     ToastModule,
-    ConfirmDialogModule,
+    DialogModule,
     TextareaModule,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService],
   templateUrl: './recurso-detalle.component.html',
   styleUrls: ['./recurso-detalle.component.scss'],
 })
@@ -40,13 +41,14 @@ export class RecursoDetalleComponent implements OnInit {
   private readonly turnosService = inject(TurnosService);
   private readonly auth = inject(AuthService);
   private readonly messageService = inject(MessageService);
-  private readonly confirmationService = inject(ConfirmationService);
 
   recurso = signal<Recurso | null>(null);
   slots = signal<SlotDisponible[]>([]);
   fechaSeleccionada: Date | null = null;
   motivo: string = '';
   hoy = new Date();
+  dialogVisible = signal(false);
+  slotSeleccionado = signal<SlotDisponible | null>(null);
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -74,7 +76,9 @@ export class RecursoDetalleComponent implements OnInit {
     if (!this.recurso() || !this.fechaSeleccionada) return;
     const fecha = this.fechaSeleccionada.toISOString().slice(0, 10);
     try {
-      const data = await this.recursosService.getSlotsDisponibles(this.recurso()!.id, fecha);
+      const data = await firstValueFrom(
+        this.recursosService.getSlotsDisponibles(this.recurso()!.id, fecha),
+      );
       this.slots.set(data);
     } catch (err: any) {
       this.messageService.add({
@@ -85,17 +89,20 @@ export class RecursoDetalleComponent implements OnInit {
     }
   }
 
-  confirmarReserva(slot: SlotDisponible) {
-    this.confirmationService.confirm({
-      message: `Reservar ${new Date(slot.inicio).toLocaleTimeString()} - ${new Date(slot.fin).toLocaleTimeString()}?`,
-      header: 'Confirmar reserva',
-      acceptLabel: 'Reservar',
-      rejectLabel: 'Cancelar',
-      accept: () => this.crearTurno(slot),
-    });
+  abrirDialogo(slot: SlotDisponible) {
+    this.slotSeleccionado.set(slot);
+    this.dialogVisible.set(true);
   }
 
-  private async crearTurno(slot: SlotDisponible) {
+  cerrarDialogo() {
+    this.dialogVisible.set(false);
+    this.slotSeleccionado.set(null);
+    this.motivo = '';
+  }
+
+  async reservarTurno() {
+    const slot = this.slotSeleccionado();
+    if (!slot) return;
     const user = this.auth.user();
     const recurso = this.recurso();
     if (!user || !recurso) return;
@@ -113,6 +120,7 @@ export class RecursoDetalleComponent implements OnInit {
         summary: 'Turno reservado',
         detail: 'El turno se reservó correctamente',
       });
+      this.cerrarDialogo();
       await this.cargarSlots();
     } catch (err: any) {
       this.messageService.add({
