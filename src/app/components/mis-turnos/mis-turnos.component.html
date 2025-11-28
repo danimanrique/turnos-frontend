@@ -1,19 +1,19 @@
 <p-toast></p-toast>
-<div class="flex align-items-center justify-content-between mb-3">
+<div class="flex align-items-center justify-content-between mb-3 w-full max-w-1200 mx-auto">
   <h2 class="m-0">Mis turnos</h2>
   <a routerLink="/recursos" pButton type="button" label="Ver recursos" class="p-button-text"></a>
 </div>
 
 @if (turnos().length > 0) {
-  <p-table [value]="turnos()">
+  <p-table [value]="turnos()" styleClass="w-full max-w-1200 mx-auto shadow-2 border-round">
     <ng-template pTemplate="header">
       <tr>
-        <th>Recurso</th>
-        <th>Fecha</th>
-        <th>Hora inicio</th>
-        <th>Hora fin</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+        <th scope="col">Recurso</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Hora inicio</th>
+        <th scope="col">Hora fin</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Acciones</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-turno>
@@ -34,13 +34,14 @@
             class="p-button-text p-button-danger"
             [disabled]="turno.estado === 'CANCELADO'"
             (click)="cancelar(turno.id)"
+            aria-label="Cancelar turno"
           ></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 } @else {
-  <div class="text-500">
+  <div class="text-500 w-full max-w-1200 mx-auto">
     No tenés turnos aún.
   </div>
 }

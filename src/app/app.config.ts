@@ -9,7 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app.routes';
 import { authInterceptor } from './auth/auth.interceptor';
 import { providePrimeNG } from 'primeng/config';
-import Material from '@primeuix/themes/material';
+import Aura from '@primeuix/themes/aura';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     providePrimeNG({
       theme: {
-        preset: Material,
+        preset: Aura,
         options: {
           darkModeSelector: false || 'none',
           ripple: true,

@@ -40,7 +40,7 @@
   </p-card>
 }
 
-<div class="grid">
+<div class="grid gap-3">
   <div class="col-12 md:col-4">
     <p-card header="Seleccioná una fecha">
       <p-date-picker
@@ -62,7 +62,7 @@
       } @else {
         <div class="flex flex-column gap-2">
           @for (slot of slots(); track slot.inicio) {
-            <div class="flex align-items-center justify-content-between border-round surface-ground p-2">
+            <div class="flex align-items-center justify-content-between border-round surface-ground p-2 transition-duration-100 hover:surface-200">
               <div>
                 <div class="font-medium">
                   {{ slot.inicio | date: 'shortTime' }} - {{ slot.fin | date: 'shortTime' }}
