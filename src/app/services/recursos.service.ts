@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { API_BASE_URL } from '../core/api.config';
+import { Recurso, SlotDisponible } from '../core/models';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RecursosService {
+  constructor(private readonly http: HttpClient) {}
+
+  getRecursos(tipo?: string) {
+    let params = new HttpParams();
+    if (tipo) {
+      params = params.set('tipo', tipo);
+    }
+    return firstValueFrom(
+      this.http.get<Recurso[]>(`${API_BASE_URL}/recursos`, { params }),
+    );
+  }
+
+  getRecurso(id: number) {
+    return firstValueFrom(this.http.get<Recurso>(`${API_BASE_URL}/recursos/${id}`));
+  }
+
+  getSlotsDisponibles(recursoId: number, fecha: string) {
+    return firstValueFrom(
+      this.http.get<SlotDisponible[]>(
+        `${API_BASE_URL}/recursos/${recursoId}/slots-disponibles`,
+        { params: { fecha } },
+      ),
+    );
+  }
+}

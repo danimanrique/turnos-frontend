@@ -1,0 +1,26 @@
+<div class="min-h-screen flex flex-column">
+  <p-menubar [model]="menuItems()" class="shadow-1 surface-card">
+    <ng-template pTemplate="start">
+      <a routerLink="/" class="text-lg font-bold text-primary">Turnero</a>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="flex align-items-center gap-2">
+        @if (userFullName()) {
+          <span class="text-sm font-medium">{{ userFullName() }}</span>
+        }
+        <p-avatar icon="pi pi-user" shape="circle" [style]="{'background-color': 'var(--primary-color)', 'color': 'white'}"></p-avatar>
+        <button
+          pButton
+          type="button"
+          label="Logout"
+          icon="pi pi-sign-out"
+          class="p-button-text"
+          (click)="logout()"
+        ></button>
+      </div>
+    </ng-template>
+  </p-menubar>
+  <main class="flex-1 p-3 md:p-4 surface-ground">
+    <router-outlet />
+  </main>
+</div>
