@@ -1,183 +1,319 @@
 <header>
   <p-toolbar>
-    <div class="flex justify-content-between align-items-center w-full">
+    <div class="container flex justify-content-between align-items-center w-full">
       <a routerLink="/" class="flex align-items-center gap-2">
-        <img src="assets/logo.png" alt="Turnero Logo" height="40" />
-        <span class="text-2xl font-bold text-primary">Turnero</span>
+        <img src="logo-neo.png" alt="Turnero Logo" height="32" />
       </a>
       <div>
-        <a
+        <button
           routerLink="/login"
           pButton
           type="button"
           label="Iniciar sesión"
-          class="p-button-text p-mr-2"
-        ></a>
-        <a
+          class="p-button-text mr-2"
+        ></button>
+        <button
           routerLink="/register"
           pButton
           type="button"
           label="Regístrate"
           class="p-button-raised"
-        ></a>
+        ></button>
       </div>
     </div>
   </p-toolbar>
 </header>
-<section class="surface-ground ">
-  <div class="grid align-items-center hero px-3 py-5 md:px-6 md:py-7">
+<section id="hero" class="surface-ground">
+  <div class="container grid align-items-center hero px-3 py-5 md:px-6 md:py-7">
     <div class="col-12 md:col-6 flex flex-column gap-3">
       <p class="text-primary font-medium m-0">Gestión de turnos moderna</p>
       <h1 class="m-0 text-4xl font-bold line-height-2">
-        Gestiona tus turnos de forma fácil, rápida y sin errores
+        Administrá tus turnos de forma fácil, rápida y sin errores
       </h1>
-      <p class="text-600 m-0">
-        Automatiza reservas 24/7, evita llamadas y aglomeraciones y mantén tu agenda ordenada.
-        Enfócate en hacer crecer tu negocio y satisfacer a tus clientes.
+      <p class="text-600 m-0 line-height-3">
+        Organizá turnos, centralizá la gestión y mejorá la experiencia de atención. Enfocate en
+        hacer crecer tu negocio y satisfacer a tus clientes.
       </p>
       <div class="flex flex-wrap gap-2">
         <a
-          routerLink="/login"
+          href="#pricing"
           pButton
           type="button"
-          label="Comienza gratis ahora"
-          class="p-button-raised"
+          label="Comienza ahora"
+          class="p-button-raised mr-2 no-underline"
         ></a>
-        <a
+        <button
           routerLink="/login"
           pButton
           type="button"
           label="Ver demo en vivo"
           class="p-button-outlined"
-        ></a>
+        ></button>
       </div>
     </div>
     <div class="col-12 md:col-6">
-      <div class="hero-image border-round shadow-3"></div>
+      <img class="w-full" src="/hero.png" alt="" />
     </div>
   </div>
 </section>
-<section>
-  <div class="px-3 md:px-6 py-5 md:py-6">
-    <h2 class="text-3xl font-bold mb-4">¿Por qué elegir nuestro sistema de gestión de turnos?</h2>
-    <div class="grid gap-3">
-      <div class="col-12 md:col-6">
-        <div class="feature-card surface-section border-round p-3 shadow-1">
-          <div class="flex align-items-center gap-2 mb-2">
-            <span class="pi pi-users text-color" aria-hidden="true"></span>
-            <h3 class="m-0 text-xl font-semibold">Disponibilidad total</h3>
+<section id="features" class="surface-0">
+  <div class="container px-3 md:px-6 py-5 md:py-6">
+    <h2 class="text-3xl text-center font-bold mb-4">¿Por qué elegirnos?</h2>
+    <div class="grid">
+      <div class="col-12 md:col-6 h-full">
+        <div
+          class="surface-section p-3 flex flex-column md:flex-row justify-content-center align-content-end gap-3"
+        >
+          <img src="/icons/f1.png" alt="Multi‑industria" width="124" height="124" class="m-auto" />
+          <div class="flex flex-column align-items-start gap-2 m-auto">
+            <h3 class="m-0 text-xl text-600 font-semibold">Disponibilidad total</h3>
+            <p class="text-600 m-0 line-height-3">
+              Automatiza la reserva, modificación y cancelación de turnos 24/7, sin llamadas ni
+              esperas. Tus clientes reservan cuando quieren, desde cualquier dispositivo.
+            </p>
           </div>
-          <p class="text-600 m-0">
-            Automatiza la reserva, modificación y cancelación de turnos 24/7, sin llamadas ni
-            esperas. Tus clientes reservan cuando quieren, desde cualquier dispositivo.
-          </p>
         </div>
       </div>
-      <div class="col-12 md:col-6">
-        <div class="feature-card surface-section border-round p-3 shadow-1">
-          <div class="flex align-items-center gap-2 mb-2">
-            <span class="pi pi-truck text-color" aria-hidden="true"></span>
-            <h3 class="m-0 text-xl font-semibold">Cero tiempos de espera</h3>
+      <div class="col-12 md:col-6 h-full">
+        <div
+          class="surface-section p-3 flex flex-column md:flex-row justify-content-center align-content-end gap-3"
+        >
+          <img src="/icons/f2.png" alt="Multi‑industria" width="124" height="124" class="m-auto" />
+          <div class="flex flex-column align-items-start gap-2 m-auto">
+            <h3 class="m-0 text-xl text-600 font-semibold">Cero tiempos de espera</h3>
+            <p class="text-600 m-0 line-height-3">
+              Reduce hasta un 95% los tiempos de espera y evita aglomeraciones en tu negocio.
+              Optimiza tu flujo de trabajo y mejora la experiencia del cliente.
+            </p>
           </div>
-          <p class="text-600 m-0">
-            Reduce hasta un 95% los tiempos de espera y evita aglomeraciones en tu negocio. Optimiza
-            tu flujo de trabajo y mejora la experiencia del cliente.
-          </p>
         </div>
       </div>
-      <div class="col-12 md:col-6">
-        <div class="feature-card surface-section border-round p-3 shadow-1">
-          <div class="flex align-items-center gap-2 mb-2">
-            <span class="pi pi-bell text-color" aria-hidden="true"></span>
-            <h3 class="m-0 text-xl font-semibold">Notificaciones inteligentes</h3>
+      <div class="col-12 md:col-6 h-full">
+        <div
+          class="surface-section p-3 flex flex-column md:flex-row justify-content-center align-content-end gap-3"
+        >
+          <img src="/icons/f3.png" alt="Multi‑industria" width="124" height="124" class="m-auto" />
+          <div class="flex flex-column align-items-start gap-2 m-auto">
+            <h3 class="m-0 text-xl text-600 font-semibold">Notificaciones inteligentes</h3>
+            <p class="text-600 m-0 line-height-3">
+              Mejora la experiencia de tus clientes con notificaciones automáticas. Mantén a todos
+              informados sin esfuerzo adicional.
+            </p>
           </div>
-          <p class="text-600 m-0">
-            Mejora la experiencia de tus clientes con notificaciones automáticas. Mantén a todos
-            informados sin esfuerzo adicional.
-          </p>
         </div>
       </div>
-      <div class="col-12 md:col-6">
-        <div class="feature-card surface-section border-round p-3 shadow-1">
-          <div class="flex align-items-center gap-2 mb-2">
-            <span class="pi pi-users text-color" aria-hidden="true"></span>
-            <h3 class="m-0 text-xl font-semibold">Multi‑industria</h3>
+      <div class="col-12 md:col-6 h-full">
+        <div
+          class="surface-section p-3 flex flex-column md:flex-row justify-content-center align-content-end gap-3"
+        >
+          <img src="/icons/f4.png" alt="Multi‑industria" width="124" height="124" class="m-auto" />
+          <div class="flex flex-column align-items-start gap-2 m-auto">
+            <h3 class="m-0 text-xl text-600 font-semibold">Multi‑industria</h3>
+            <p class="text-600 m-0 line-height-3">
+              Compatible con clínicas, alquiler de canchas, salones de estética, vehículos y más.
+            </p>
           </div>
-          <p class="text-600 m-0">
-            Compatible con clínicas, alquiler de canchas, salones de estética, vehículos y más. Una
-            solución versátil para cualquier negocio.
-          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<section>
-  <div class="px-3 md:px-6 py-5 md:py-6 surface-section">
-    <h2 class="text-3xl font-bold mb-4">
-      Comienza hoy mismo y transforma la gestión de tu negocio
+<section id="mobile" class="bg-primary">
+  <div class="container px-3 md:px-6 py-5 md:py-6">
+    <h2 class="text-3xl text-center font-bold mb-4">
+      Comienzá hoy mismo y transformá la gestión de tu negocio
     </h2>
-    <div class="grid gap-3">
-      <div class="col-12 md:col-6">
-        <div class="surface-0 border-round p-3 shadow-1 flex gap-3">
-          <span class="pi pi-check-circle text-primary text-2xl" aria-hidden="true"></span>
-          <div>
-            <h3 class="m-0 text-xl font-semibold">Prueba gratuita sin compromisos</h3>
-            <p class="text-600 m-0">
-              Explora todas las funcionalidades durante 14 días completamente gratis.
-            </p>
+    <div class="relative border-round overflow-hidden cursor-pointer">
+      <div class="grid grid-nogutter">
+        <div class="col-12 md:col-6">
+          <div
+            class="mobile-grid-left surface-0 h-full flex gap-3 hover:bg-gray-100 transition-colors duration-300"
+          >
+            <span class="block md:hidden pi pi-check-circle text-2xl" aria-hidden="true"></span>
+            <div>
+              <h3 class="m-0 text-xl text-600 font-semibold">Prueba gratuita</h3>
+              <p class="text-600 m-0">
+                Explorá todas nuestras funcionalidades completamente gratis.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <div
+            class="mobile-grid-right surface-0 h-full flex justify-content-end gap-3 hover:bg-gray-100 transition-colors duration-300"
+          >
+            <span class="block md:hidden pi pi-sliders-h text-2xl" aria-hidden="true"></span>
+            <div>
+              <h3 class="m-0 text-xl text-600 font-semibold">Planes flexibles y escalables</h3>
+              <p class="text-600 m-0">
+                Se adapta a tu tamaño y necesidades. Desde emprendedores hasta grandes equipos.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 md:col-6">
-        <div class="surface-0 border-round p-3 shadow-1 flex gap-3">
-          <span class="pi pi-sliders-h text-primary text-2xl" aria-hidden="true"></span>
-          <div>
-            <h3 class="m-0 text-xl font-semibold">Planes flexibles y escalables</h3>
-            <p class="text-600 m-0">
-              Se adapta a tu tamaño y necesidades. Desde emprendedores hasta grandes equipos.
-            </p>
+      <div class="grid grid-nogutter">
+        <div class="col-12 md:col-6">
+          <div
+            class="mobile-grid-left surface-0 h-full flex gap-3 hover:bg-gray-100 transition-colors duration-300"
+          >
+            <span class="block md:hidden pi pi-clock text-2xl" aria-hidden="true"></span>
+            <div>
+              <h3 class="m-0 text-xl text-600 font-semibold">Soporte experto 24/7</h3>
+              <p class="text-600 m-0">
+                Asistencia técnica en todo momento para que nunca te quedes sin ayuda.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 md:col-6">
+          <div
+            class="mobile-grid-right surface-0 h-full flex gap-3 hover:bg-gray-100 transition-colors duration-300"
+          >
+            <span class="block md:hidden pi pi-users text-2xl" aria-hidden="true"></span>
+            <div>
+              <h3 class="m-0 text-xl text-600 font-semibold">Desde cualquier dispositivo</h3>
+              <p class="text-600 m-0">
+                Gestioná tu agenda desde cualquier dispositivo con conexión a Internet.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 md:col-6">
-        <div class="surface-0 border-round p-3 shadow-1 flex gap-3">
-          <span class="pi pi-headset text-primary text-2xl" aria-hidden="true"></span>
-          <div>
-            <h3 class="m-0 text-xl font-semibold">Soporte experto 24/7</h3>
-            <p class="text-600 m-0">
-              Asistencia técnica en todo momento para que nunca te quedes sin ayuda.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 md:col-6">
-        <div class="surface-0 border-round p-3 shadow-1 flex gap-3">
-          <span class="pi pi-users text-primary text-2xl" aria-hidden="true"></span>
-          <div>
-            <h3 class="m-0 text-xl font-semibold">Comunidad en crecimiento</h3>
-            <p class="text-600 m-0">
-              Únete a miles de usuarios que ya disfrutan de una agenda sin complicaciones.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-column md:flex-row gap-2 mt-4">
-      <a
-        routerLink="/login"
-        pButton
-        type="button"
-        label="¡Quiero probar gratis ahora!"
-        class="p-button-raised"
-      ></a>
-      <a
-        routerLink="/login"
-        pButton
-        type="button"
-        label="Agenda una demo personalizada"
-        class="p-button-outlined"
-      ></a>
+      <img src="/mobile.png" alt="" class="mobile-grid" />
     </div>
   </div>
 </section>
+
+<section id="pricing" class="surface-ground">
+  <div class="container px-3 md:px-6 py-5 md:py-6">
+    <div class="text-center">
+      <h2>
+        Simplificá tu agenda, maximizá tu tiempo: <br />
+        la gestión de turnos nunca fue tan fácil.
+      </h2>
+    </div>
+    <div class="mt-4">
+      <p-divider align="center">
+        <span class="text-900 font-bold text-lg">Planes</span>
+      </p-divider>
+      <div class="grid">
+        <div class="col-12 md:col-4">
+          <div
+            class="surface-section border-1 border-primary border-round p-4 h-full flex flex-column gap-3"
+          >
+            <div class="flex flex-column gap-1">
+              <h3 class="m-0 text-xl font-semibold text-color">Plan Básico</h3>
+              <p class="m-0 text-primary font-bold text-3xl">Gratis</p>
+              <p class="m-0 text-color-secondary">Para pequeños equipos que comienzan</p>
+            </div>
+            <ul class="list-none p-0 m-0 flex flex-column gap-2">
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Agenda online y recordatorios por email</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">2 agendas disponibles</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Soporte estándar</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div
+            class="surface-section border-1 border-primary border-round p-4 h-full flex flex-column gap-3"
+          >
+            <div class="flex flex-column gap-1">
+              <h3 class="m-0 text-xl font-semibold text-color">Plan Avanzado</h3>
+              <p class="m-0 text-primary font-bold text-3xl">$12.000</p>
+              <p class="m-0 text-color-secondary">Para negocios en crecimiento</p>
+            </div>
+            <ul class="list-none p-0 m-0 flex flex-column gap-2">
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Reportes e indicadores de ocupación</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Integración con múltiples sucursales</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Soporte prioritario en horario laboral</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 md:col-4">
+          <div
+            class="surface-section border-1 border-primary border-round p-4 h-full flex flex-column gap-3"
+          >
+            <div class="flex flex-column gap-1">
+              <h3 class="m-0 text-xl font-semibold text-color">Plan Premium</h3>
+              <p class="m-0 text-primary font-bold text-3xl">$28.000</p>
+              <p class="m-0 text-color-secondary">Para operaciones con alto volumen</p>
+            </div>
+            <ul class="list-none p-0 m-0 flex flex-column gap-2">
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Automatizaciones avanzadas y APIs</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Onboarding y entrenamiento dedicado</span>
+              </li>
+              <li class="flex align-items-start gap-2">
+                <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+                <span class="text-600">Soporte 24/7 con acuerdos SLA</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p-divider></p-divider>
+    </div>
+    <div
+      class="flex flex-column md:flex-row gap-2 mt-4 align-content-center justify-content-center"
+    >
+      <button
+        routerLink="/login"
+        pButton
+        type="button"
+        size="large"
+        label="¡Quiero probar una demo ahora!"
+        class="p-button-raised"
+      ></button>
+    </div>
+  </div>
+</section>
+<footer class="surface-section border-top-1 surface-border">
+  <div
+    class="container px-3 md:px-6 py-4 md:py-5 flex flex-column md:flex-row gap-3 md:gap-4 align-items-start md:align-items-center justify-content-between"
+  >
+    <div class="flex align-items-center gap-3">
+      <div class="line-height-2">
+        <img src="logo-neo.png" alt="Turnero Logo" height="24" />
+        <p class="m-0 text-color-secondary">Agenda inteligente para tu negocio</p>
+      </div>
+    </div>
+    <div class="flex flex-column md:align-items-end gap-2 text-right">
+      <div class="flex gap-3 flex-wrap">
+        <a
+          routerLink="/terms"
+          class="text-color-secondary text-sm hover:text-primary transition-colors duration-300"
+          >Términos de Servicio</a
+        >
+        <a
+          routerLink="/privacy"
+          class="text-color-secondary text-sm hover:text-primary transition-colors duration-300"
+          >Política de Privacidad</a
+        >
+      </div>
+      <p class="m-0 text-color-secondary text-sm">© 2024 Turnero. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

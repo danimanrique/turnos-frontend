@@ -3,6 +3,16 @@
 :root {
   font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
+}
+
+.pr-10 {
+    padding-right: 10rem;
+}
+.pl-10 {
+    padding-left: 10rem;
 }

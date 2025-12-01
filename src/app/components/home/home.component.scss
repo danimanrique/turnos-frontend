@@ -1,17 +1,52 @@
-.hero {
-  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.08), transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(15, 23, 42, 0.08), transparent 35%),
-    radial-gradient(circle at 50% 90%, rgba(14, 165, 233, 0.06), transparent 35%);
-}
-
 .hero-image {
   min-height: 280px;
   background: linear-gradient(120deg, rgba(15, 23, 42, 0.8), rgba(14, 165, 233, 0.6)),
-    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    url('/public/hero.png') center/cover no-repeat;
 }
 
 @media (min-width: 768px) {
   .hero-image {
     min-height: 320px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mobile-grid {
+  height: 300px;
+  display: block;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-backface-visibility: hidden;
+}
+
+.mobile-grid-left {
+  padding: 5rem 10rem 5rem 3rem !important;
+  text-align: right;
+}
+
+.mobile-grid-right {
+  padding: 5rem 3rem 5rem 10rem !important;
+}
+
+@media (max-width: 767px) {
+  .mobile-grid {
+    display: none;
+  }
+
+  .mobile-grid-left,
+  .mobile-grid-right {
+    padding: 5rem 3rem !important;
+    text-align: left;    
   }
 }

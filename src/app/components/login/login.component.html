@@ -1,34 +1,66 @@
 <p-toast></p-toast>
-<div class="min-h-screen flex flex-column md:flex-row align-items-center justify-content-center px-3 surface-ground gap-4">
-  <div class="text-center md:text-left">
-    <h1 class="m-0 text-3xl font-bold text-primary">Turnero</h1>
-    <p class="text-500 mt-2">Accedé para reservar y gestionar tus turnos.</p>
+<section class="surface-ground min-h-screen flex align-items-center justify-content-center">
+  <div class="container grid align-items-center justify-content-center px-3 md:px-5 gap-4">
+    <div class="col-12">
+      <div class="p-4">
+        <div class="flex align-items-center justify-content-center gap-2 mb-2">
+          <img src="/logo.png" alt="Turnero" height="44" routerLink="/" class="cursor-pointer"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 flex justify-content-center">
+      <p-card class="login-card shadow-3 border-round-xl surface-section" [header]="'Ingresar'">
+        <form
+          [formGroup]="form"
+          class="flex flex-column gap-3"
+          (ngSubmit)="submit()"
+          aria-label="Formulario de ingreso"
+        >
+          <div class="flex flex-column gap-2">
+            <label for="email">Email</label>
+            <input
+              pInputText
+              id="email"
+              type="email"
+              formControlName="email"
+              required
+              autocomplete="email"
+              class="w-full"
+            />
+          </div>
+          <div class="flex flex-column gap-2">
+            <label for="password">Contraseña</label>
+            <p-password
+              id="password"
+              formControlName="password"
+              [feedback]="false"
+              inputId="password"
+              toggleMask="true"
+              class="w-full"
+            ></p-password>
+          </div>
+          <button
+            pButton
+            type="submit"
+            label="Ingresar"
+            class="w-full"
+            [disabled]="form.invalid || loading()"
+            [loading]="loading()"
+          ></button>
+        </form>
+      </p-card>
+    </div>
+    <div class="col-12">
+      <div class="flex gap-3 flex-wrap text-600 mt-3 justify-content-center">
+        <span class="flex align-items-center gap-2">
+          <span class="pi pi-shield text-primary" aria-hidden="true"></span>
+          Seguridad en tus accesos
+        </span>
+        <span class="flex align-items-center gap-2">
+          <span class="pi pi-clock text-primary" aria-hidden="true"></span>
+          Acceso 24/7
+        </span>
+      </div>
+    </div>
   </div>
-  <p-card styleClass="w-full md:w-8 lg:w-5 shadow-3 border-round-md" [header]="'Ingresar'">
-    <form [formGroup]="form" class="flex flex-column gap-3" (ngSubmit)="submit()" aria-label="Formulario de ingreso">
-      <div class="flex flex-column gap-2">
-        <label for="email">Email</label>
-        <input pInputText id="email" type="email" formControlName="email" required autocomplete="email" class="w-full" />
-      </div>
-      <div class="flex flex-column gap-2">
-        <label for="password">Contraseña</label>
-        <p-password
-          id="password"
-          formControlName="password"
-          [feedback]="false"
-          inputId="password"
-          toggleMask="true"
-          styleClass="w-full"
-        ></p-password>
-      </div>
-      <button
-        pButton
-        type="submit"
-        label="Ingresar"
-        class="w-full"
-        [disabled]="form.invalid || loading()"
-        [loading]="loading()"
-      ></button>
-    </form>
-  </p-card>
-</div>
+</section>

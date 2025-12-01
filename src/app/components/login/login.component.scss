@@ -1,1 +1,10 @@
-/* estilos opcionales mínimos; priorizamos utilidades PrimeFlex */
+.p-card .p-card-header {
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+}
+
