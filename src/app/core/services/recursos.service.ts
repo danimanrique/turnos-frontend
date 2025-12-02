@@ -10,10 +10,13 @@ import { Recurso, SlotDisponible } from '../models';
 export class RecursosService {
   constructor(private readonly http: HttpClient) {}
 
-  getRecursos(tipo?: string) {
+  getRecursos(filters?: { sucursalId?: number; tipoRecursoId?: number }) {
     let params = new HttpParams();
-    if (tipo) {
-      params = params.set('tipo', tipo);
+    if (filters?.sucursalId) {
+      params = params.set('sucursalId', filters.sucursalId);
+    }
+    if (filters?.tipoRecursoId) {
+      params = params.set('tipoRecursoId', filters.tipoRecursoId);
     }
     return firstValueFrom(
       this.http.get<Recurso[]>(`${API_BASE_URL}/recursos`, { params }),

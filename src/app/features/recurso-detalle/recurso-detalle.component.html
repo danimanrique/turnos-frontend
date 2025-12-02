@@ -32,8 +32,16 @@
 </div>
 
 @if (recurso()) {
-  <p-card class="mb-4" [header]="recurso()?.nombre" [subheader]="recurso()?.tipo">
+  <p-card
+    class="mb-4"
+    [header]="recurso()?.nombre"
+    [subheader]="recurso()?.tipoRecurso?.nombre || 'Tipo no especificado'"
+  >
     <p class="mb-3">{{ recurso()?.descripcion || 'Sin descripción' }}</p>
+    <div class="flex align-items-center gap-2 mb-2 text-600">
+      <span class="pi pi-building text-primary" aria-hidden="true"></span>
+      <span>{{ recurso()?.sucursal?.nombre || 'Sucursal no especificada' }}</span>
+    </div>
     <p-tag [severity]="recurso()?.activo ? 'success' : 'danger'">
       {{ recurso()?.activo ? 'Activo' : 'Inactivo' }}
     </p-tag>
@@ -67,7 +75,7 @@
                 <div class="font-medium">
                   {{ slot.inicio | date: 'shortTime' }} - {{ slot.fin | date: 'shortTime' }}
                 </div>
-                <small class="text-500">Capacidad disponible: {{ slot.capacidad }}</small>
+                <small class="text-500">Capacidad disponible: {{ slot.capacidadLibre }}</small>
               </div>
               <button pButton type="button" label="Reservar" icon="pi pi-calendar-plus" (click)="abrirDialogo(slot)"></button>
             </div>

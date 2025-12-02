@@ -11,5 +11,5 @@ import { ToolbarModule } from 'primeng/toolbar';
   styleUrl: './public.component.scss'
 })
 export class PublicComponent {
-
+  year = new Date().getFullYear();
 }

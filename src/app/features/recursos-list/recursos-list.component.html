@@ -25,7 +25,11 @@
 <div class="grid">
   @for (recurso of tempRecursos(); track recurso.id) {
     <div class="col-12 md:col-4">
-      <p-card class="h-full flex flex-column border-round shadow-2 transition-duration-100 transition-all hover:shadow-4" [header]="recurso.nombre" [subheader]="recurso.tipo">
+      <p-card
+        class="h-full flex flex-column border-round shadow-2 transition-duration-100 transition-all hover:shadow-4"
+        [header]="recurso.nombre"
+        [subheader]="recurso.tipoRecurso?.nombre || 'Tipo no especificado'"
+      >
         <p class="mb-3">{{ recurso.descripcion || 'Sin descripción' }}</p>
         <div class="flex align-items-center justify-content-between mt-auto">
           <p-tag [severity]="recurso.activo ? 'success' : 'danger'">

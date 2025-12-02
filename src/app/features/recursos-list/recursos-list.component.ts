@@ -34,25 +34,16 @@ export class RecursosListComponent implements OnInit {
 
   recursos = signal<Recurso[]>([]);
   tempRecursos = signal<Recurso[]>([]);
-  tipoSeleccionado: string | null = null;
-  filteredTipos = signal<{ label: string; value: string }[]>([]);
-
-  readonly tipoOptions = [
-    { label: 'Cancha', value: 'CANCHA' },
-    { label: 'Profesional', value: 'PROFESIONAL' },
-    { label: 'Vehículo', value: 'VEHICULO' },
-    { label: 'Sala', value: 'SALA' },
-    { label: 'Equipo', value: 'EQUIPO' },
-  ];
+  tipoSeleccionado: number | null = null;
+  filteredTipos = signal<{ label: string; value: number }[]>([]);
 
   ngOnInit() {
-    this.filteredTipos.set(this.tipoOptions);
     this.cargarRecursos();
   }
 
   filtrarTipos(event: { query: string }) {
     const query = (event.query || '').toLowerCase();
-    const opciones = this.tipoOptions.filter((opt) =>
+    const opciones = this.filteredTipos().filter((opt) =>
       opt.label.toLowerCase().includes(query),
     );
     this.filteredTipos.set(opciones);
@@ -60,8 +51,11 @@ export class RecursosListComponent implements OnInit {
 
   async cargarRecursos() {
     try {
-      const data = await this.recursosService.getRecursos(this.tipoSeleccionado || undefined);
+      const data = await this.recursosService.getRecursos({
+        tipoRecursoId: this.tipoSeleccionado || undefined,
+      });
       this.recursos.set(data);
+      this.buildTipoOptions(data);
       this.filterRecursos();
     } catch (err: any) {
       this.messageService.add({
@@ -75,11 +69,26 @@ export class RecursosListComponent implements OnInit {
   filterRecursos() {
     const tipo = this.tipoSeleccionado;
     const base = this.recursos();
-    this.tempRecursos.set(tipo ? base.filter((rec) => rec.tipo === tipo) : base);
+    this.tempRecursos.set(
+      tipo ? base.filter((rec) => rec.tipoRecursoId === tipo) : base,
+    );
   }
 
-  onTipoChange(value: string | null) {
+  onTipoChange(value: number | null) {
     this.tipoSeleccionado = value;
     this.filterRecursos();
+  }
+
+  private buildTipoOptions(data: Recurso[]) {
+    const map = new Map<number, { label: string; value: number }>();
+    data.forEach((rec) => {
+      if (rec.tipoRecurso && rec.tipoRecurso.id && rec.tipoRecurso.nombre) {
+        map.set(rec.tipoRecurso.id, {
+          label: rec.tipoRecurso.nombre,
+          value: rec.tipoRecurso.id,
+        });
+      }
+    });
+    this.filteredTipos.set(Array.from(map.values()));
   }
 }

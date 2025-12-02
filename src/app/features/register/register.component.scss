@@ -1,0 +1,18 @@
+.p-card .p-card-header {
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+
+.login-card {
+  max-width: 520px;
+}
+
+p-password ::ng-deep .p-password-input {
+  width: 100%;
+}

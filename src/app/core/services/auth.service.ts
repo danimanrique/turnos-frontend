@@ -9,6 +9,14 @@ interface LoginResponse {
   user: Usuario;
 }
 
+interface RegisterResponse {
+  id: number;
+  nombre: string;
+  apellido: string;
+  email: string;
+  activo?: boolean;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -35,6 +43,17 @@ export class AuthService {
       this.http.post<LoginResponse>(`${API_BASE_URL}/auth/login`, { email, password }),
     );
     this.setSession(res.access_token, res.user);
+  }
+
+  async register(payload: {
+    nombre: string;
+    apellido: string;
+    email: string;
+    password: string;
+  }): Promise<RegisterResponse> {
+    return firstValueFrom(
+      this.http.post<RegisterResponse>(`${API_BASE_URL}/auth/register`, payload),
+    );
   }
 
   logout(): void {

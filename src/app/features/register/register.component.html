@@ -1,1 +1,107 @@
-<p>register works!</p>
+<p-toast></p-toast>
+<section class="surface-ground min-h-screen flex align-items-center justify-content-center">
+  <div class="container grid align-items-center justify-content-center px-3 md:px-5 gap-4">
+    <div class="col-12">
+      <div class="p-4">
+        <div class="flex align-items-center justify-content-center gap-2 mb-2">
+          <img src="/logo.png" alt="Turnero" height="44" routerLink="/" class="cursor-pointer" />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 flex justify-content-center">
+      <p-card class="login-card shadow-3 border-round-xl surface-section" [header]="'Crear cuenta'">
+        <form
+          [formGroup]="form"
+          class="flex flex-column gap-3"
+          (ngSubmit)="submit()"
+          aria-label="Formulario de registro"
+        >
+          <div class="grid">
+            <div class="col-12 md:col-6 flex flex-column gap-2">
+              <label for="nombre">Nombre</label>
+              <input
+                pInputText
+                id="nombre"
+                type="text"
+                formControlName="nombre"
+                required
+                autocomplete="given-name"
+                class="w-full"
+              />
+            </div>
+            <div class="col-12 md:col-6 flex flex-column gap-2">
+              <label for="apellido">Apellido</label>
+              <input
+                pInputText
+                id="apellido"
+                type="text"
+                formControlName="apellido"
+                required
+                autocomplete="family-name"
+                class="w-full"
+              />
+            </div>
+          </div>
+          <div class="flex flex-column gap-2">
+            <label for="email">Email</label>
+            <input
+              pInputText
+              id="email"
+              type="email"
+              formControlName="email"
+              required
+              autocomplete="email"
+              class="w-full"
+            />
+          </div>
+          <div class="grid">
+            <div class="col-12 flex flex-column gap-2">
+              <label for="password">Contraseña</label>
+              <p-password
+                id="password"
+                formControlName="password"
+                [feedback]="false"
+                toggleMask="true"
+                class="w-full"
+              ></p-password>
+            </div>
+            <div class="col-12 flex flex-column gap-2">
+              <label for="passwordConfirm">Confirmar contraseña</label>
+              <p-password
+                id="passwordConfirm"
+                formControlName="passwordConfirm"
+                [feedback]="false"
+                toggleMask="true"
+                class="w-full"
+              ></p-password>
+            </div>
+          </div>
+          <button
+            pButton
+            type="submit"
+            label="Crear cuenta"
+            class="w-full"
+            [disabled]="form.invalid || loading()"
+            [loading]="loading()"
+          ></button>
+          <p class="text-center text-600 m-0">
+            ¿Ya tenés cuenta?
+            <a routerLink="/login" class="text-primary font-semibold">Iniciar sesión</a>
+          </p>
+        </form>
+      </p-card>
+    </div>
+    <div class="col-12">
+      <div class="flex gap-3 flex-wrap text-600 mt-3 justify-content-center">
+        <span class="flex align-items-center gap-2">
+          <span class="pi pi-shield text-primary" aria-hidden="true"></span>
+          Seguridad en tus accesos
+        </span>
+        <span class="flex align-items-center gap-2">
+          <span class="pi pi-clock text-primary" aria-hidden="true"></span>
+          Acceso 24/7
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
