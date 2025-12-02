@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, firstValueFrom } from 'rxjs';
-import { API_BASE_URL } from '../core/api.config';
-import { Recurso, SlotDisponible } from '../core/models';
+import { firstValueFrom } from 'rxjs';
+import { API_BASE_URL } from '../api.config';
+import { Recurso, SlotDisponible } from '../models';
 
 @Injectable({
   providedIn: 'root',

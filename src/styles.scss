@@ -9,7 +9,13 @@ html {
 body {
     margin: 0;
 }
-
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .pr-10 {
     padding-right: 10rem;
 }

@@ -8,13 +8,13 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { TextareaModule } from 'primeng/textarea';
 import { MessageService } from 'primeng/api';
-import { RecursosService } from '../../services/recursos.service';
-import { TurnosService } from '../../services/turnos.service';
-import { AuthService } from '../../auth/auth.service';
 import { Recurso, SlotDisponible } from '../../core/models';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { firstValueFrom } from 'rxjs';
+import { RecursosService } from '../../core/services/recursos.service';
+import { TurnosService } from '../../core/services/turnos.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-recurso-detalle',

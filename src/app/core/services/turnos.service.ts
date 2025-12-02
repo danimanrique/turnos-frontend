@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { API_BASE_URL } from '../core/api.config';
-import { Turno } from '../core/models';
+import { API_BASE_URL } from '../api.config';
+import { Turno } from '../models';
+
 
 @Injectable({
   providedIn: 'root',

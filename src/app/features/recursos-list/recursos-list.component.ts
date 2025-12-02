@@ -8,8 +8,8 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { RecursosService } from '../../services/recursos.service';
 import { Recurso } from '../../core/models';
+import { RecursosService } from '../../core/services/recursos.service';
 
 @Component({
   selector: 'app-recursos-list',

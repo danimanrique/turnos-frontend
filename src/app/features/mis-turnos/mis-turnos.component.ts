@@ -6,9 +6,9 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { TurnosService } from '../../services/turnos.service';
-import { AuthService } from '../../auth/auth.service';
 import { Turno } from '../../core/models';
+import { TurnosService } from '../../core/services/turnos.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-mis-turnos',

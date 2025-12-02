@@ -4,16 +4,16 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuItem } from 'primeng/api';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
-  selector: 'app-shell',
+  selector: 'app-private',
   standalone: true,
   imports: [RouterOutlet, RouterLink, MenubarModule, ButtonModule, AvatarModule],
-  templateUrl: './shell.component.html',
-  styleUrls: ['./shell.component.scss'],
+  templateUrl: './private.component.html',
+  styleUrls: ['./private.component.scss'],
 })
-export class ShellComponent {
+export class PrivateComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
 

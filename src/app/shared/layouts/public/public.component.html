@@ -1,0 +1,55 @@
+<header>
+  <p-toolbar>
+    <div class="container flex justify-content-between align-items-center w-full">
+      <a routerLink="/" class="flex align-items-center gap-2">
+        <img src="logo-neo.png" alt="Turnero Logo" height="32" />
+      </a>
+      <div>
+        <button
+          routerLink="/login"
+          pButton
+          type="button"
+          label="Iniciar sesión"
+          class="p-button-text mr-2"
+        ></button>
+        <button
+          routerLink="/register"
+          pButton
+          type="button"
+          label="Regístrate"
+          class="p-button-raised"
+        ></button>
+      </div>
+    </div>
+  </p-toolbar>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer class="surface-section border-top-1 surface-border">
+  <div
+    class="container px-3 md:px-6 py-4 md:py-5 flex flex-column md:flex-row gap-3 md:gap-4 align-items-start md:align-items-center justify-content-between"
+  >
+    <div class="flex align-items-center gap-3">
+      <div class="line-height-2">
+        <img src="logo-neo.png" alt="Turnero Logo" height="24" />
+        <p class="m-0 text-color-secondary">Agenda inteligente para tu negocio</p>
+      </div>
+    </div>
+    <div class="flex flex-column md:align-items-end gap-2 text-right">
+      <div class="flex gap-3 flex-wrap">
+        <a
+          routerLink="/tyc"
+          class="text-color-secondary text-sm hover:text-primary transition-colors duration-300"
+          >Términos y Condiciones</a
+        >
+        <a
+          routerLink="/politicas"
+          class="text-color-secondary text-sm hover:text-primary transition-colors duration-300"
+          >Política de Privacidad</a
+        >
+      </div>
+      <p class="m-0 text-color-secondary text-sm">© 2024 Turnero. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

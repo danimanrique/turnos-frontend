@@ -1,0 +1,49 @@
+<section class="surface-ground py-5 px-3 md:px-5">
+  <div class="page-container flex flex-column gap-4">
+    <div class="surface-section border-round p-4 shadow-2">
+      <div class="flex align-items-center gap-2 mb-2">
+        <div>
+          <h1 class="m-0 text-3xl font-bold text-color">Política de privacidad</h1>
+        </div>
+      </div>
+      <p class="text-600 m-0 line-height-3">
+        Usamos la información solo para ofrecerte el servicio de agenda y notificaciones. Puedes
+        controlar y solicitar cambios cuando lo necesites.
+      </p>
+    </div>
+
+    <div class="grid">
+      @for(policy of policies; track policy.title) {
+      <div class="col-12">
+        <p-card class="h-full shadow-1 border-round-md p-4">
+          <ng-template pTemplate="header">
+            <h2 class="m-0 mb-2 text-xl font-semibold text-color">{{ policy.title }}</h2>
+            <p class="m-0 text-600">{{ policy.description }}</p>
+          </ng-template>
+          <ul class="list-none p-0 m-0 flex flex-column gap-2">
+            @for(point of policy.points; track point) {
+            <li class="flex align-items-start gap-2">
+              <span class="pi pi-check-circle text-primary" aria-hidden="true"></span>
+              <span class="text-600 line-height-3">{{ point }}</span>
+            </li>
+            }
+          </ul>
+        </p-card>
+      </div>
+      }
+    </div>
+
+    <p-divider></p-divider>
+
+    <div class="flex flex-column md:flex-row gap-2 justify-content-between align-items-center">
+      <div class="text-600">
+        <p class="m-0">
+          Si tenés alguna solicitud sobre privacidad, escribinos y la procesaremos a la brevedad.
+          <a href="mailto:soporte@turneo.com" class="no-underline"
+            ><i class="text-primary">soporte@turneo.com</i></a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -7,7 +7,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
