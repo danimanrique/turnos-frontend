@@ -39,13 +39,16 @@ export class RecursoDetalleComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly recursosService = inject(RecursosService);
   private readonly turnosService = inject(TurnosService);
-  private readonly auth = inject(AuthService);
+  readonly auth = inject(AuthService);
   private readonly messageService = inject(MessageService);
 
   recurso = signal<Recurso | null>(null);
   slots = signal<SlotDisponible[]>([]);
   fechaSeleccionada: Date | null = null;
   motivo: string = '';
+  invitadoNombre = '';
+  invitadoApellido = '';
+  invitadoEmail = '';
   hoy = new Date();
   dialogVisible = signal(false);
   slotSeleccionado = signal<SlotDisponible | null>(null);
@@ -98,23 +101,58 @@ export class RecursoDetalleComponent implements OnInit {
     this.dialogVisible.set(false);
     this.slotSeleccionado.set(null);
     this.motivo = '';
+    this.invitadoNombre = '';
+    this.invitadoApellido = '';
+    this.invitadoEmail = '';
   }
 
   async reservarTurno() {
     const slot = this.slotSeleccionado();
     if (!slot) return;
-    const user = this.auth.user();
     const recurso = this.recurso();
-    if (!user || !recurso) return;
-    try {
-      await this.turnosService.crearTurno({
-        usuarioId: user.id,
-        recursoId: recurso.id,
-        fechaHoraInicio: slot.inicio,
-        fechaHoraFin: slot.fin,
-        motivo: this.motivo || undefined,
-        disponibilidadId: slot.disponibilidadId,
+    if (!recurso) return;
+    const user = this.auth.user();
+    const invitadoPayload = !user
+      ? {
+          usuarioNombre: this.invitadoNombre.trim(),
+          usuarioApellido: this.invitadoApellido.trim(),
+          usuarioEmail: this.invitadoEmail.trim(),
+        }
+      : null;
+    if (
+      !user &&
+      (!invitadoPayload?.usuarioNombre ||
+        !invitadoPayload.usuarioApellido ||
+        !invitadoPayload.usuarioEmail)
+    ) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Datos faltantes',
+        detail: 'Completa nombre, apellido y email para reservar sin registrarte.',
       });
+      return;
+    }
+    try {
+      const payload = user
+        ? {
+            usuarioId: user.id,
+            recursoId: recurso.id,
+            fechaHoraInicio: slot.inicio,
+            fechaHoraFin: slot.fin,
+            motivo: this.motivo || undefined,
+            disponibilidadId: slot.disponibilidadId,
+          }
+        : {
+            usuarioNombre: invitadoPayload!.usuarioNombre,
+            usuarioApellido: invitadoPayload!.usuarioApellido,
+            usuarioEmail: invitadoPayload!.usuarioEmail,
+            recursoId: recurso.id,
+            fechaHoraInicio: slot.inicio,
+            fechaHoraFin: slot.fin,
+            motivo: this.motivo || undefined,
+            disponibilidadId: slot.disponibilidadId,
+          };
+      await this.turnosService.crearTurno(payload);
       this.messageService.add({
         severity: 'success',
         summary: 'Turno reservado',

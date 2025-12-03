@@ -17,6 +17,43 @@
       <label for="motivo">Motivo (opcional)</label>
       <textarea id="motivo" pInputTextarea [(ngModel)]="motivo" rows="2"></textarea>
     </div>
+    @if (!auth.user()) {
+      <div class="grid">
+        <div class="col-12 md:col-6 flex flex-column gap-2">
+          <label for="invitadoNombre">Nombre</label>
+          <input
+            pInputText
+            id="invitadoNombre"
+            type="text"
+            [(ngModel)]="invitadoNombre"
+            autocomplete="given-name"
+            class="w-full"
+          />
+        </div>
+        <div class="col-12 md:col-6 flex flex-column gap-2">
+          <label for="invitadoApellido">Apellido</label>
+          <input
+            pInputText
+            id="invitadoApellido"
+            type="text"
+            [(ngModel)]="invitadoApellido"
+            autocomplete="family-name"
+            class="w-full"
+          />
+        </div>
+      </div>
+      <div class="flex flex-column gap-2">
+        <label for="invitadoEmail">Email</label>
+        <input
+          pInputText
+          id="invitadoEmail"
+          type="email"
+          [(ngModel)]="invitadoEmail"
+          autocomplete="email"
+          class="w-full"
+        />
+      </div>
+    }
     <div class="flex justify-content-end gap-2">
       <button pButton type="button" label="Cancelar" class="p-button-text" (click)="cerrarDialogo()"></button>
       <button pButton type="button" label="Reservar" icon="pi pi-check" (click)="reservarTurno()"></button>
@@ -40,7 +77,19 @@
     <p class="mb-3">{{ recurso()?.descripcion || 'Sin descripción' }}</p>
     <div class="flex align-items-center gap-2 mb-2 text-600">
       <span class="pi pi-building text-primary" aria-hidden="true"></span>
-      <span>{{ recurso()?.sucursal?.nombre || 'Sucursal no especificada' }}</span>
+      <div class="flex flex-column">
+        <span>{{ recurso()?.sucursal?.nombre || 'Sucursal no especificada' }}</span>
+        <small class="text-500" *ngIf="recurso()?.sucursal?.slogan">
+          {{ recurso()?.sucursal?.slogan }}
+        </small>
+      </div>
+      <img
+        *ngIf="recurso()?.sucursal?.logo"
+        [src]="recurso()?.sucursal?.logo"
+        alt="Logo sucursal"
+        height="32"
+        class="ml-auto"
+      />
     </div>
     <p-tag [severity]="recurso()?.activo ? 'success' : 'danger'">
       {{ recurso()?.activo ? 'Activo' : 'Inactivo' }}

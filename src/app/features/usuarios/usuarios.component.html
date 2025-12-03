@@ -1,0 +1,55 @@
+<section class="usuarios">
+  <div class="container flex flex-column gap-3">
+    <div class="flex gap-2 align-items-center justify-content-between flex-column md:flex-row">
+      <div class="flex align-items-center gap-2 w-full">
+        <span class="pi pi-search text-500" aria-hidden="true"></span>
+        <input
+          pInputText
+          type="text"
+          class="w-full"
+          placeholder="Nombre, apellido o email..."
+          [ngModel]="search()"
+          (ngModelChange)="search.set($event)"
+        />
+        <button pButton icon="pi pi-download" class="p-button-text"></button>
+      </div>
+    </div>
+
+    <div class="surface-section border-round shadow-1 border-1 surface-border">
+      @for (u of filtrados(); track u.id) {
+        <div class="usuario-item flex align-items-center justify-content-between px-3 py-3 border-bottom-1 surface-border">
+          <div class="flex align-items-center gap-3 w-full">
+            <p-avatar icon="pi pi-user" shape="circle" styleClass="bg-indigo-50 text-indigo-500"></p-avatar>
+            <div class="flex flex-column gap-1">
+              <div class="flex align-items-center gap-2">
+                <span class="font-semibold text-900">{{ u.nombre }}</span>
+                <small class="text-500">{{ u.email }}</small>
+              </div>
+              <div class="text-600 text-sm">
+                <span [ngClass]="{'text-danger': u.ultimoTurnoDias === 0}">
+                  {{ textoUltimoTurno(u.ultimoTurnoDias) }}
+                </span>
+                <span class="ml-1" [ngClass]="{'text-primary': u.proximoTurnoDias !== null}">
+                  {{ textoProximoTurno(u.proximoTurnoDias) }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-column align-items-end gap-1 min-w-max text-right">
+            <span class="text-900 text-xl font-bold">{{ u.totalTurnos }}</span>
+            <p-tag severity="info" [value]="'turno' + (u.totalTurnos > 1 ? 's' : '')"></p-tag>
+          </div>
+        </div>
+      }
+      @if (filtrados().length === 0) {
+        <div class="text-600 text-center p-3">Sin resultados para tu búsqueda.</div>
+      }
+    </div>
+
+    <div class="flex align-items-center justify-content-between text-sm text-600">
+      <a class="text-primary cursor-pointer">Anterior</a>
+      <span>pág. 1/12 (3179 resultados)</span>
+      <a class="text-primary cursor-pointer">Siguiente</a>
+    </div>
+  </div>
+</section>

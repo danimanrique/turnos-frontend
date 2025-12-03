@@ -10,6 +10,10 @@ import { PoliticasComponent } from './features/politicas/politicas.component';
 import { PublicComponent } from './shared/layouts/public/public.component';
 import { authChildGuard, authGuard } from './core/guards/auth.guard';
 import { RegisterComponent } from './features/register/register.component';
+import { AgendaComponent } from './features/agenda/agenda.component';
+import { ServiciosComponent } from './features/servicios/servicios.component';
+import { UsuariosComponent } from './features/usuarios/usuarios.component';
+import { InformesComponent } from './features/informes/informes.component';
 
 export const routes: Routes = [
   {
@@ -29,7 +33,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
     canActivateChild: [authChildGuard],
     children: [
-      { path: 'recursos', component: RecursosListComponent },
+      { path: 'agenda', component: AgendaComponent },
+      { path: 'servicios', component: ServiciosComponent },
+      { path: 'usuarios', component: UsuariosComponent },
+      { path: 'informes', component: InformesComponent },
       { path: 'recursos', component: RecursosListComponent },
       { path: 'recursos/:id', component: RecursoDetalleComponent },
       { path: 'mis-turnos', component: MisTurnosComponent },

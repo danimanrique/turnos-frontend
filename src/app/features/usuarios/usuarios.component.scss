@@ -1,0 +1,17 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.usuario-item {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.usuario-item:hover {
+  background-color: var(--surface-hover);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.text-danger {
+  color: #ef4444;
+}

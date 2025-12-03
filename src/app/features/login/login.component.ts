@@ -44,7 +44,7 @@ export class LoginComponent {
     const { email, password } = this.form.getRawValue();
     try {
       await this.auth.login(email, password);
-      await this.router.navigate(['/recursos']);
+      await this.router.navigate(['/dashboard']);
     } catch (err: any) {
       this.messageService.add({
         severity: 'error',

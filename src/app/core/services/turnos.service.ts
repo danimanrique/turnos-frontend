@@ -16,14 +16,29 @@ export class TurnosService {
     return firstValueFrom(this.http.get<Turno[]>(`${API_BASE_URL}/turnos`, { params }));
   }
 
-  crearTurno(payload: {
-    usuarioId: number;
-    recursoId: number;
-    fechaHoraInicio: string;
-    fechaHoraFin: string;
-    motivo?: string;
-    disponibilidadId?: number;
-  }) {
+  crearTurno(
+    payload:
+      | {
+          usuarioId: number;
+          recursoId: number;
+          fechaHoraInicio: string;
+          fechaHoraFin: string;
+          motivo?: string;
+          disponibilidadId?: number;
+          canalReserva?: string;
+        }
+      | {
+          usuarioNombre: string;
+          usuarioApellido: string;
+          usuarioEmail: string;
+          recursoId: number;
+          fechaHoraInicio: string;
+          fechaHoraFin: string;
+          motivo?: string;
+          disponibilidadId?: number;
+          canalReserva?: string;
+        },
+  ) {
     return firstValueFrom(this.http.post(`${API_BASE_URL}/turnos`, payload));
   }
 
