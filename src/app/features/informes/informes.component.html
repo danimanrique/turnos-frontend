@@ -1,1 +1,46 @@
-<p>informes works!</p>
+<section class="informes">
+  <div class="container flex flex-column gap-3">
+    <div class="grid">
+      @for (kpi of kpis(); track kpi.label) {
+        <div class="col-12 sm:col-6 lg:col-3">
+          <p-card class="shadow-1 border-1 surface-border kpi-card">
+            <div class="flex align-items-center justify-content-between mb-2">
+              <span class="text-600 text-sm">{{ kpi.label }}</span>
+              <p-tag [severity]="'info'" [value]="kpi.diff"></p-tag>
+            </div>
+            <div class="text-900 text-3xl font-bold">{{ kpi.value | number }}</div>
+          </p-card>
+        </div>
+      }
+    </div>
+
+    <div class="grid">
+      <div class="col-12 lg:col-8">
+        <p-card header="Evolución de turnos" class="shadow-1 border-1 surface-border">
+          <p-chart type="line" [data]="lineChart()"></p-chart>
+        </p-card>
+      </div>
+      <div class="col-12 lg:col-4 h-full">
+        <p-card header="Distribución por tipo" class="shadow-1 border-1 surface-border">
+          <p-chart type="pie" [data]="distribucionChart()" [style]="{ width: '100%' }"></p-chart>
+        </p-card>
+      </div>
+    </div>
+
+    <div class="surface-section border-round shadow-1 border-1 surface-border">
+      <div class="p-3 flex align-items-center justify-content-between">
+        <h3 class="m-0 text-xl">Uso por categoría</h3>
+        <span class="text-500 text-sm">Últimos 30 días</span>
+      </div>
+      @for (r of usoRecursos(); track r.nombre) {
+        <div class="flex flex-column gap-1 px-3 py-2 border-top-1 surface-border">
+          <div class="flex justify-content-between align-items-center">
+            <span class="font-semibold text-900">{{ r.nombre }}</span>
+            <span class="text-600">{{ r.turnos }} turnos</span>
+          </div>
+          <p-progressBar [value]="r.porcentaje"></p-progressBar>
+        </div>
+      }
+    </div>
+  </div>
+</section>

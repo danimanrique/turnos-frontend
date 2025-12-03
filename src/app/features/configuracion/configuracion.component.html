@@ -1,0 +1,67 @@
+<section class="configuracion">
+  <div class="container flex flex-column gap-4">
+    <p-card class="shadow-1 border-1 surface-border">
+      <div class="flex flex-column gap-4">
+        <div class="flex align-items-start gap-4 flex-wrap">
+          <div class="flex-1 min-w-15rem">
+            <h3 class="m-0 text-xl">Datos principales</h3>
+            <p class="text-600 mt-1">Información pública de tu sucursal.</p>
+            <div class="flex flex-column gap-3 mt-3">
+              <div class="flex flex-column gap-1">
+                <label for="denominacion" class="text-sm text-600">Denominación</label>
+                <input pInputText id="denominacion" class="w-full" [(ngModel)]="sucursal().denominacion" />
+              </div>
+              <div class="flex flex-column gap-1">
+                <label for="slogan" class="text-sm text-600">Slogan</label>
+                <input pInputText id="slogan" class="w-full" [(ngModel)]="sucursal().slogan" />
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-column align-items-center justify-content-center">
+            <div class="logo-wrapper border-1 surface-border border-round p-3 flex flex-column align-items-center m-auto">
+              <img [src]="sucursal().logo" alt="Logo sucursal" class="logo-img mb-2" />
+              <button pButton type="button" label="Cambiar logo" class="p-button-text p-button-sm"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-column gap-2">
+          <h3 class="m-0 text-xl">Estado de la empresa</h3>
+          <div class="flex gap-2 align-items-center">
+            <small [class.inactive]="!sucursal().online">Inactivo</small>
+            <p-toggleswitch [(ngModel)]="sucursal().online" />
+            <small [class.active]="sucursal().online">Activo</small>
+          </div>
+        </div>
+
+        <div class="flex flex-column gap-2">
+          <h3 class="m-0 text-xl">Comparte este link con tus clientes</h3>
+          <div class="flex align-items-center gap-2 flex-column sm:flex-row w-full">
+            <input pInputText class="w-full" [value]="sucursal().linkPublico" readonly />
+            <button pButton icon="pi pi-copy" class="p-button-text"></button>
+          </div>
+          <div class="flex flex-column gap-1 w-full sm:w-6">
+            <label for="slug" class="text-sm text-600">ID de la empresa en el link</label>
+            <input pInputText id="slug" class="w-full" [(ngModel)]="sucursal().slug" />
+          </div>
+        </div>
+
+        <div class="grid align-items-center">
+          <div class="col-12 sm:col-6 flex flex-column gap-2">
+            <p class="font-semibold m-0">Código QR de tu link</p>
+            <img src="assets/qr-placeholder.png" alt="QR" class="qr-img" />
+            <button pButton type="button" label="Descargar imagen QR" class="p-button-text"></button>
+          </div>
+          <div class="col-12 sm:col-6">
+            <h4 class="m-0 text-xl">Suscripción</h4>
+            <p class="text-600 m-0 mt-2">
+              Tu empresa se encuentra dentro del <a class="text-primary">período de prueba gratuito</a>.
+              Puedes usar todas las funcionalidades sin necesidad de tener una suscripción activa.
+            </p>
+            <p class="mt-2">Restan <span class="text-primary font-semibold">{{ sucursal().diasRestantes }}</span> días de prueba.</p>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</section>

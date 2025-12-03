@@ -29,7 +29,15 @@
       />
     </ng-template>
   </p-toolbar>
-  <main class="flex-1 p-4 surface-ground md:px-10">
+  <main class="flex-1 pb-4 surface-ground md:px-10">
+    <h1 class="text-center text-600 mb-4 text-3xl">
+      {{ routeTitle() }}
+    </h1>
     <router-outlet />
   </main>
+  <footer>
+    <div class="text-center p-3 surface-200 mt-auto text-500 text-sm">
+      &copy; {{ currentYear }} Turneo. Todos los derechos reservados.
+    </div>
+  </footer>
 </div>

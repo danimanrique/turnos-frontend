@@ -1,0 +1,14 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.kpi-card {
+  min-height: 130px;
+}
+
+@media (max-width: 768px) {
+  .kpi-card {
+    min-height: auto;
+  }
+}
