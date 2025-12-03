@@ -1,0 +1,39 @@
+<section class="equipo">
+  <div class="container flex flex-column gap-3">
+    <div class="filters flex gap-2 align-items-center flex-column sm:flex-row w-full">
+      <span class="pi pi-search text-500" aria-hidden="true"></span>
+      <input
+        pInputText
+        type="text"
+        class="w-full"
+        placeholder="Buscar por nombre o email..."
+        [ngModel]="search()"
+        (ngModelChange)="search.set($event)"
+      />
+    </div>
+
+    <div class="surface-section border-round shadow-1 border-1 surface-border">
+      @for (m of filtrados; track m.id) {
+        <div
+          class="equipo-item flex flex-column sm:flex-row align-items-start sm:align-items-center justify-content-between px-3 py-3 border-bottom-1 surface-border gap-2"
+        >
+          <div class="flex align-items-center gap-3 equipo-main w-full sm:w-auto">
+            <p-avatar icon="pi pi-user" shape="circle" styleClass="bg-indigo-50 text-indigo-500"></p-avatar>
+            <div class="flex flex-column">
+              <span class="font-semibold text-900">{{ m.nombre }}</span>
+              <small class="text-500">{{ m.email }}</small>
+            </div>
+          </div>
+          <div class="flex gap-2 equipo-actions w-full sm:w-auto justify-content-start sm:justify-content-end">
+            <button pButton title="Permiso Administrador" [icon]="'pi pi-star'+(m.admin ? '-fill' : '')" class="p-button-text" [severity]="m.admin ? 'warn' : 'secondary'" (click)="setAdmin(m.id)"></button>
+            <button pButton title="Editar" icon="pi pi-pencil" class="p-button-text" (click)="editar(m.id)"></button>
+            <button pButton title="Borrar" icon="pi pi-trash" class="p-button-text" severity="danger" (click)="borrar(m.id)"></button>
+          </div>
+        </div>
+      }
+      @if (filtrados.length === 0) {
+        <div class="text-600 text-center p-3">Sin miembros con ese criterio.</div>
+      }
+    </div>
+  </div>
+</section>

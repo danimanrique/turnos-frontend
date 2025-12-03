@@ -1,6 +1,6 @@
 <section class="usuarios">
   <div class="container flex flex-column gap-3">
-    <div class="flex gap-2 align-items-center justify-content-between flex-column md:flex-row">
+    <div class="filters flex gap-2 align-items-center justify-content-between flex-column sm:flex-row">
       <div class="flex align-items-center gap-2 w-full">
         <span class="pi pi-search text-500" aria-hidden="true"></span>
         <input
@@ -17,25 +17,28 @@
 
     <div class="surface-section border-round shadow-1 border-1 surface-border">
       @for (u of filtrados(); track u.id) {
-        <div class="usuario-item flex align-items-center justify-content-between px-3 py-3 border-bottom-1 surface-border">
-          <div class="flex align-items-center gap-3 w-full">
+        <div
+          class="usuario-item flex flex-column sm:flex-row align-items-start sm:align-items-center justify-content-between px-3 py-3 border-bottom-1 surface-border gap-3"
+        >
+          <div class="flex align-items-center gap-3 w-full sm:w-auto usuario-main">
             <p-avatar icon="pi pi-user" shape="circle" styleClass="bg-indigo-50 text-indigo-500"></p-avatar>
-            <div class="flex flex-column gap-1">
-              <div class="flex align-items-center gap-2">
+            <div class="flex flex-column gap-1 usuario-text">
+              <div class="flex flex-column align-items-start md:flex-row md:align-items-center md:gap-2">
                 <span class="font-semibold text-900">{{ u.nombre }}</span>
                 <small class="text-500">{{ u.email }}</small>
               </div>
-              <div class="text-600 text-sm">
-                <span [ngClass]="{'text-danger': u.ultimoTurnoDias === 0}">
+              <div class="text-600 mt-1 text-xs">
+                <span [ngClass]="{'text-danger': u.ultimoTurnoDias === 0}" class="mr-1">
                   {{ textoUltimoTurno(u.ultimoTurnoDias) }}
                 </span>
-                <span class="ml-1" [ngClass]="{'text-primary': u.proximoTurnoDias !== null}">
+                <br class="sm:hidden" />
+                <span [ngClass]="{'text-primary': u.proximoTurnoDias !== null}">
                   {{ textoProximoTurno(u.proximoTurnoDias) }}
                 </span>
               </div>
             </div>
           </div>
-          <div class="flex flex-column align-items-end gap-1 min-w-max text-right">
+          <div class="flex md:flex-column align-items-start sm:align-items-end gap-1 w-full sm:w-auto text-left sm:text-right usuario-meta">
             <span class="text-900 text-xl font-bold">{{ u.totalTurnos }}</span>
             <p-tag severity="info" [value]="'turno' + (u.totalTurnos > 1 ? 's' : '')"></p-tag>
           </div>

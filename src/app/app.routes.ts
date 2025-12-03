@@ -14,6 +14,7 @@ import { AgendaComponent } from './features/agenda/agenda.component';
 import { ServiciosComponent } from './features/servicios/servicios.component';
 import { UsuariosComponent } from './features/usuarios/usuarios.component';
 import { InformesComponent } from './features/informes/informes.component';
+import { EquipoComponent } from './features/equipo/equipo.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'servicios', component: ServiciosComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'informes', component: InformesComponent },
+      { path: 'equipo', component: EquipoComponent },
       { path: 'recursos', component: RecursosListComponent },
       { path: 'recursos/:id', component: RecursoDetalleComponent },
       { path: 'mis-turnos', component: MisTurnosComponent },

@@ -1,13 +1,13 @@
 .container {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.usuario-item {
+.equipo-item {
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.usuario-item:hover {
+.equipo-item:hover {
   background-color: var(--surface-hover);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
@@ -17,24 +17,16 @@
 }
 
 @media (max-width: 768px) {
-  .usuario-item {
+  .equipo-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
-  .usuario-main {
-    align-items: flex-start;
-  }
-  .usuario-text {
+  .equipo-main {
     width: 100%;
   }
-  .usuario-meta {
+  .equipo-actions {
     width: 100%;
-    align-items: flex-start;
-    text-align: left;
+    justify-content: flex-start;
   }
-}
-
-.text-danger {
-  color: #ef4444;
 }

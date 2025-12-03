@@ -51,6 +51,11 @@ export class PrivateComponent {
         routerLink: '/usuarios',
       },
       {
+        label: 'Equipo',
+        icon: 'pi pi-fw pi-shopping-bag',
+        routerLink: '/equipo',
+      },
+      {
         label: 'Informes',
         icon: 'pi pi-fw pi-book',
         routerLink: '/informes',
